@@ -18,27 +18,21 @@ RLC 회로가 아래 그림과 같이 주어졌다고 가정하자.
 RLC회로 그림에서 인덕터, 저항, 커패시터를 통과하는 전류가 각각 $i_1$, $i_2$, $i_3$이기 때문에, 소자의 전압 관계에 의해 아래와 같은 방정식을 얻는다.
 
 $$
-\begin{equation}
 V_R = i_2(t) R
-\end{equation}
 $$
 
-$$ \begin{equation}
+$$ 
 V_L(t) = L \frac{di_1(t)}{dt}
-\end{equation}
 $$
 
-$$ \begin{equation}
+$$ 
 V_C(t) = \frac{1}{C}\int i_3(t) \, dt
-\end{equation}
 $$
 
-이 때, 식 **(3)** 을 전류 $i_3(t) $에 대해 다시 쓸 수 있다.
+이 때, 세 번째 식을 전류 $i_3(t) $에 대해 다시 쓸 수 있다.
 
 $$
-\begin{equation}
 i_3(t) = C \frac{d V_C(t)}{dt} 
-\end{equation}
 $$
 
 ---
@@ -50,32 +44,31 @@ $$
 i_3(t) = i_1(t) - i_2(t) = C \frac{d V_R(t)}{dt}
 $$
 
-식 **(1)** 에 의해,
+식 $V_R = i_2(t) R$ 에 의해,
 
 $$
-\begin{equation}
 RC \frac{d i_2(t)}{dt} + i_2(t) - i_1(t) = 0
-\end{equation}
 $$
+
+을 유도 할 수 있다.
 
 ---
 ### 1-2. 두 번째 방정식 : 
 
-Kirchhoff's Voltage Law(KVL)에 의해 폐회로(loop) 내에서 모든 전압의 합은 0이기 때문에, $E = V_L + V_R$ 이다. 그러면, 식 **(1)** 과 식 **(2)** 에 의해,
+Kirchhoff's Voltage Law(KVL)에 의해 폐회로(loop) 내에서 모든 전압의 합은 0이기 때문에, $E = V_L + V_R$ 이다. 그러면, 식 $V_R = i_2(t) R$ 과 식 $V_L(t) = L \frac{di_1(t)}{dt}$ 에 의해,
 
 $$
-\begin{equation}
 E(t) = L \frac{di_1(t)}{dt} +  i_2(t) R
-\end{equation}
 $$
 
-결론적으로, 식 **(5)** 과 식 **(6)** 을 통해 아래 연립 미분방정식을 얻는다.
+따라서, 아래 연립 미분방정식을 얻는다.
 
 $$
-\begin{cases}
-L \frac{di_1(t)}{dt} + i_2(t) R = E(t)\\
+L \frac{di_1(t)}{dt} + i_2(t) R = E(t)
+$$
+
+$$
 RC \frac{d i_2(t)}{dt} + i_2(t) - i_1(t) = 0
-\end{cases}
 $$
 
 
@@ -83,46 +76,31 @@ $$
 주어진 연립 방정식을 Laplace 변환을 통해 전달함수를 계산해보자.
 
 $$
-\begin{cases}
-L \frac{di_1(t)}{dt} + i_2(t) R = E(t)\\
+L \frac{di_1(t)}{dt} + i_2(t) R = E(t)
+$$
+
+$$
 RC \frac{d i_2(t)}{dt} + i_2(t) - i_1(t) = 0
-\end{cases}
 $$
 
 라플라스 변환을 통해 시간 영역의 미분 방정식을 주파수 영역의 대수적 방정식으로 변환한다. 이 때, 초기 조건은 0이라 가정한다.
 
-첫 번째 방정식 ::
-
 $$
-L \mathcal{L} [ \frac{di_1(t)}{dt} ] + R \mathcal{L} [ i_2(t) ] = \mathcal{L} [ E(t) ]
+L s I_1(s) + R I_2(s) = E(s) \hspace{2.75cm} (1)
 $$
 
 $$
-\begin{equation}
-L s I_1(s) + R I_2(s) = E(s)
-\end{equation}
-$$
-
-두 번째 방정식 : 
-
-$$
-RC \mathcal{L} [ \frac{di_2(t)}{dt} ] + \mathcal{L} [ i_2(t) ] - \mathcal{L} [ i_1(t) ] = 0
-$$
-
-$$
-\begin{equation}
-RC s I_2(s) + I_2(s) - I_1(s) = 0
-\end{equation}
+RC s I_2(s) + I_2(s) - I_1(s) = 0 \hspace{2cm} (2)
 $$
 
 ### 2-1. 전달 함수 계산(입력 : $E(s)$ / 출력 : $I_1(s)$ )
-식 **(8)** 을 $I_2(t)$에 대해 정리하면,
+식 **(2)** 을 $I_2(t)$에 대해 정리하면,
 
 $$
 I_2(t) = \frac{1}{RCs + 1}I_1(t)
 $$
 
-을 얻고, 식 **(7)** 에 대입하면, $E(s)$에 대한 $I_1(s)$의 식을 얻는다.
+을 얻고, 식 **(1)** 에 대입하면, $E(s)$에 대한 $I_1(s)$의 식을 얻는다.
 
 $$
 E(s) = LsI_1(t) + \frac{R}{RCs + 1}I_1(t)
@@ -135,13 +113,13 @@ $$
 $$
 
 ### 2-2. 전달 함수 계산(입력 : $E(s)$ / 출력 : $I_2(s)$ )
-식 **(8)** 을 $I_1(t)$에 대해 정리하면, 
+식 **(2)** 을 $I_1(t)$에 대해 정리하면, 
 
 $$
 I_1(s) = (RCs +1) I_2(s)
 $$
 
-을 얻고, 식 **(7)** 에 대입하면, $E(s)$에 대한 $I_2(s)$의 식을 얻는다.
+을 얻고, 식 **(1)** 에 대입하면, $E(s)$에 대한 $I_2(s)$의 식을 얻는다.
 
 $$
 E(s) = I_2(s)(RLCs^2+Ls+R)
@@ -158,7 +136,7 @@ $$
 
 
 ## Appendix A
-각 소자의 전압 관계는 회로를 구성하는 **저항(R)**, **인덕터(L)**, **커패시터(C)**가 전압과 전류 사이에서 갖는 물리적 관계를 의미한다. 
+각 소자의 전압 관계는 회로를 구성하는 **저항(R)**, **인덕터(L)**, **커패시터(C)** 가 전압과 전류 사이에서 갖는 물리적 관계를 의미한다. 
 
 ### A1. 저항 (Resistor, R)
 저항에서의 전압은 옴의 법칙(Ohm's Law)에 의해 정의된다.
