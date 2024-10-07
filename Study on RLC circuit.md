@@ -26,7 +26,7 @@ V_L(t) = L \frac{di_1(t)}{dt}
 $$
 
 $$ 
-V_C(t) = \frac{1}{C}\int i_3(t) \, dt
+V_C(t) = \frac{1}{C}\int i_3(t) dt
 $$
 
 이 때, 세 번째 식을 전류 $i_3(t) $에 대해 다시 쓸 수 있다.
